@@ -34,7 +34,7 @@ class TestAmenityl_instantiation(unittest.TestCase):
     def test_ids_is_unique(self):
         a = Amenity()
         b = Amenity()
-        self.assertNotEqual(a.id, b.id)
+        self.assertNotEqual(A.id, B.id)
 
     def test_args_not_used(self):
         a = Amenity(x)
