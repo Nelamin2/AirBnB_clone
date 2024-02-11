@@ -21,21 +21,21 @@ def parse(arg):
     if curls is None:
         if brackets is None:
             splited_line = split(arg)
-            for item in splited line:
+            for item in splited_line:
                 striped_line = item.strip(",")
             return striped_line
         else:
             first_part = split(arg[:brackets.span()[0]])
             for item in first_part:
-                command = first_part.(",")
+                command = first_part.trip(",")
                 command.append(brackets.group())
                 return command
     else:
         first_part = split(arg[:curls.span()[0]])
-        for item in first_part
-        command = item.strip(",")
-        command.append(curls.group())
-        return command
+        for item in first_part:
+            command = item.strip(",")
+            command.append(curls.group())
+            return command
 
 
 class HBNBCommand(cmd.Cmd):

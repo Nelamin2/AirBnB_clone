@@ -8,9 +8,8 @@ import models
 class BaseModel:
     """the  Basemodel class of HBNB"""
 
-
-def __init__(self, *args, **kwargs):
-    """class initilizer
+    def __init__(self, *args, **kwargs):
+        """class initilizer
         Args:
             *args: Unused.
             **kwargs : Key/value pairs of attributes for dictionary.
