@@ -9,7 +9,7 @@ class BaseModel:
     """the  Basemodel class of HAIRBNB"""
 
 
-def __init__(self, *args, **kargs):
+def __init__(self, *args, **kwargs):
     """class initilizer
         Args:
             *args: Unused.
