@@ -6,10 +6,11 @@ import models
 
 
 class BaseModel:
-    """the  Basemodel class of HAIRBNB"""
+    """the  Basemodel class of HBNB"""
 
-    def __init__(self, *args, **kargs):
-        """class initilizer
+
+def __init__(self, *args, **kwargs):
+    """class initilizer
         Args:
             *args: Unused.
             **kwargs : Key/value pairs of attributes for dictionary.
