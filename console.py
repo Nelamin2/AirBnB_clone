@@ -28,15 +28,15 @@ def parse(arg):
         else:
             first_part = split(arg[:brackets.span()[0]])
             for item in first_part:
-                command = first_part.trip(",")
+                command = first_part.strip(",")
                 command.append(brackets.group())
-                return command
+            return command
     else:
         first_part = split(arg[:curls.span()[0]])
         for item in first_part:
             command = item.strip(",")
             command.append(curls.group())
-            return command
+        return command
 
 
 class HBNBCommand(cmd.Cmd):
