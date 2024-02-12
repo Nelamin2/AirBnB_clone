@@ -1,54 +1,53 @@
 #!/usr/bin/python3
-""" unittests for models/amenity.py.
-test classes:
-    TestAmenity_instantiation
-    TestAmenity_save
-    TestAmenity_to_dict
-"""
-import os
-import models
+"""Defines unittests for models/base_model.py.
+unitests includes three classes:
+TestBaseModel_instantiation
+TestBaseModel_save
+TestBaseModel_to_dict"""
+
 import unittest
+from models.base_model import BaseModel
+import os
 from datetime import datetime
 from time import sleep
-from models.amenity import Amenity
 
 
-class TestAmenityl_instantiation(unittest.TestCase):
+class TestBaseModel_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the BaseModel class."""
 
-    def test_amenity_instantiation_without_argument(self):
-        self.assertEqual(Amenity, type(Amenity()))
+    def test_instantiation_without_argument(self):
+        self.assertEqual(BaseModel, type(BaseModel()))
 
-    def test_amenity_stored_in_objects(self):
-        self.assertIn(Amenity(), models.storage.all())
+    def test_obj_stored_in_objects(self):
+        self.assertIn(BaseModel(), models.storage.all())
 
     def test_id__str(self):
-        self.assertEqual(str, type(Amenity().id))
+        self.assertEqual(str, type(BaseModel().id))
 
     def test_created_at_is_datetime(self):
-        self.assertEqual(datetime, type(Amenity().created_at))
+        self.assertEqual(datetime, type(BaseModel().created_at))
 
     def test_updated_at_is_datetime(self):
-        self.assertEqual(datetime, type(Amenity().updated_at))
+        self.assertEqual(datetime, type(BaseModel().updated_at))
 
     def test_ids_is_unique(self):
-        a = Amenity()
-        b = Amenity()
+        a = BaseModel()
+        b = BaseModel()
         self.assertNotEqual(A.id, B.id)
 
     def test_args_not_used(self):
-        a = Amenity(x)
+        a = BaseModel(x)
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
         time = datetime.today.isoformat()
-        a = Amenity(id="345", created_at=time, updated_at=time)
-        self.assertEqual(a.id, "345")
-        self.assertEqual(a.created_at, datetime.today)
-        self.assertEqual(a.updated_at, datetime.today)
+        bm = BaseModel(id="345", created_at=time, updated_at=time)
+        self.assertEqual(bm.id, "345")
+        self.assertEqual(bm.created_at, datetime.today)
+        self.assertEqual(bm.updated_at, datetime.today)
 
 
-class Amenity_save(unittest.TestCase):
+class TestBaseModel_save(unittest.TestCase):
     """Unittests for testing save method."""
 
     @classmethod
@@ -70,21 +69,20 @@ class Amenity_save(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        a = Amenity()
+        a = BaseModel()
         sleep(0.1)
         time_updated_at = a.updated_at
         a.save()
         self.assertLess(time_updated_at, a. updated_at)
 
 
-class TestAmenity_to_dict(unittest.TestCase):
+class TestBaseModel_to_dict(unittest.TestCase):
     """Unittests for testing to_dict."""
 
     def test_to_dict_type(self):
-        a = Amenity()
+        a = BaseModel()
         self.assertTrue(dict, type(a.to_dict()))
 
 
 if __name__ == "__main__":
     unittest.main()
-
