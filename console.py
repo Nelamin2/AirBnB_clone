@@ -16,6 +16,7 @@ from models.review import Review
 
 
 def parse(arg):
+    """parse the argument line"""
     curls = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
     if curls is None:
@@ -56,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """Do act when receiving an empty line."""
+        """Do nothing when receiving an empty line."""
         pass
 
     def default(self, arg):
@@ -79,16 +80,17 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, arg):
-        """Exit the program."""
+        """Quit command to exit the program."""
         return True
 
     def do_EOF(self, arg):
-        """Exit the program."""
+        """EOF signal to exit the program."""
         print("")
         return True
 
     def do_create(self, arg):
-        """Create a new class instance and print its id."""
+        """Usage: create <class>
+        Create a new class instance and print its id."""
         line = parse(arg)
         if len(line) == 0:
             print("** class name missing **")
@@ -99,7 +101,8 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
-        """Display the string representation of
+        """Usage: show <class> <id> or <class>.show(<id>)
+        Display the string representation of
         a class instance of a given id."""
         line = parse(arg)
         newobjdict = storage.all()
@@ -115,7 +118,8 @@ class HBNBCommand(cmd.Cmd):
             print(newobjdict["{}.{}".format(line[0], line[1])])
 
     def do_destroy(self, arg):
-        """Delete a class instance of a given id."""
+        """Usage: destroy <class> <id> or <class>.destroy(<id>)
+        Delete a class instance of a given id."""
         line = parse(arg)
         newobjdict = storage.all()
         if len(line) == 0:
@@ -131,7 +135,8 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        """Display string representations of all instances of a given class.
+        """Usage: all or all <class> or <class>.all()
+        Display string representations of all instances of a given class.
         If no class is specified, displays all instantiated objects."""
         line = parse(arg)
         if len(line) > 0 and line[0] not in HBNBCommand.__classes:
@@ -192,7 +197,8 @@ class HBNBCommand(cmd.Cmd):
     storage.save()
 
     def do_count(self, arg):
-        """Retrieve the number of instances of a given class."""
+        """Usage: count <class> or <class>.count()
+        Retrieve the number of instances of a given class."""
 
         line = parse(arg)
         count = 0
