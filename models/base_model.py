@@ -30,9 +30,9 @@ class BaseModel:
 
     def __str__(self):
         """print the string represntation of the class with id and dic"""
-
+        classname = self.__class__.__name__
         return "[{}] ({}) {}"\
-               .format(self.__class__.__name__, self.id, self.__dict__)
+               .format(classname, self.id, self.__dict__)
 
     def save(self):
         """a method to save upated_at with the current datetime."""

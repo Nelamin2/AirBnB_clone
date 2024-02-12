@@ -69,10 +69,10 @@ class HBNBCommand(cmd.Cmd):
             line = [arg[:match.span()[0]], arg[match.span()[1]:]]
             match = re.search(r"\((.*?)\)", line[1])
             if match is not None:
-                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
-                if command[0] in argdict.keys():
-                    call = "{} {}".format(argl[0], command[1])
-                    return argdict[command[0]](call)
+                command = [line[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in commands.keys():
+                    call = "{} {}".format(line[0], command[1])
+                    return commands[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
 
@@ -140,11 +140,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             instance = []
-            for obj in storage.all().values():
+            for obj in storage.all():
                 if len(line) > 0 and line[0] == obj.__class__.__name__:
                     instance.append(obj.__str__())
                 elif len(line) == 0:
-                    objl.append(obj.__str__())
+                    instance.append(obj.__str__())
             print(instance)
 
     def do_update(self, arg):
