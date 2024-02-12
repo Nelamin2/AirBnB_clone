@@ -21,10 +21,7 @@ def parse(arg):
     brackets = re.search(r"\[(.*?)\]", arg)
     if curls is None:
         if brackets is None:
-            splited_line = split(arg)
-            for item in splited_line:
-                striped_line = item.strip(",")
-            return striped_line
+            return [item.strip(",") for item in split(arg)]
         else:
             first_part = split(arg[:brackets.span()[0]])
             for item in first_part:
