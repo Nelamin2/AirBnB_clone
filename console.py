@@ -139,13 +139,13 @@ class HBNBCommand(cmd.Cmd):
         if len(line) > 0 and line[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            instance = []
+            newobj= []
             for obj in storage.all():
                 if len(line) > 0 and line[0] == obj.__class__.__name__:
-                    instance.append(obj.__str__())
+                    newobj.append(obj.__str__())
                 elif len(line) == 0:
-                    instance.append(obj.__str__())
-            print(instance)
+                    newobj.append(obj.__str__())
+            print(newobj)
 
     def do_update(self, arg):
         """Update a class instance of a given id by adding or updating
