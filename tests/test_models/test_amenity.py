@@ -13,14 +13,14 @@ from time import sleep
 from models.amenity import Amenity
 
 
-class TestAmenityl_instantiation(unittest.TestCase):
+class TestAmenity_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the BaseModel class."""
 
     def test_amenity_instantiation_without_argument(self):
         self.assertEqual(Amenity, type(Amenity()))
 
     def test_amenity_stored_in_objects(self):
-        self.assertIn(Amenity(), models.storage.all())
+        self.assertIn(Amenity(), models.storage.all().values())
 
     def test_id__str(self):
         self.assertEqual(str, type(Amenity().id))
@@ -37,11 +37,11 @@ class TestAmenityl_instantiation(unittest.TestCase):
         self.assertNotEqual(a.id, b.id)
 
     def test_args_not_used(self):
-        a = Amenity(x)
+        a = Amenity()
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
-        time = datetime.today.isoformat()
+        time = datetime.today().isoformat()
         a = Amenity(id="345", created_at=time, updated_at=time)
         self.assertEqual(a.id, "345")
         self.assertEqual(a.created_at, datetime.today)
