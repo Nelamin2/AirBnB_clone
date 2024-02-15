@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             newobj= []
-            for obj in storage.all():
+            for obj in storage.all().values():
                 if len(line) > 0 and line[0] == obj.__class__.__name__:
                     newobj.append(obj.__str__())
                 elif len(line) == 0:
