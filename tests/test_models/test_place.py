@@ -20,7 +20,7 @@ class TestReview_instantiation(unittest.TestCase):
         self.assertEqual(Place, type(Place()))
 
     def test_place_stored_in_objects(self):
-        self.assertIn(Place(), models.storage.all())
+        self.assertIn(Place(), models.storage().values())
 
     def test_place_id__str(self):
         self.assertEqual(str, type(Place().id))
@@ -37,11 +37,12 @@ class TestReview_instantiation(unittest.TestCase):
         self.assertNotEqual(a.id, b.id)
 
     def test_place_args_not_used(self):
-        a = Place(x)
+        x = Place()
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
-        time = datetime.today.isoformat()
+        time = datetime.today()
+        time_iso.= time.isoformat()
         a = Place(id="345", created_at=time, updated_at=time)
         self.assertEqual(a.id, "345")
         self.assertEqual(a.created_at, datetime.today)
