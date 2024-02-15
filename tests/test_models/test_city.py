@@ -41,7 +41,8 @@ class TestCity_instantiation(unittest.TestCase):
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
-        time = datetime.today.isoformat()
+        time = datetime.today()
+        time = .isoformat()
         a = City(id="345", created_at=time, updated_at=time)
         self.assertEqual(a.id, "345")
         self.assertEqual(a.created_at, datetime.today)

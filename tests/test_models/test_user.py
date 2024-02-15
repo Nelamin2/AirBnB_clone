@@ -20,7 +20,7 @@ class TestUser_instantiation(unittest.TestCase):
         self.assertEqual(User, type(User()))
 
     def test_user_stored_in_objects(self):
-        self.assertIn(User(), models.storage.all())
+        self.assertIn(User(), models.storage.all().value())
 
     def test_user_id__str(self):
         self.assertEqual(str, type(User().id))
@@ -37,11 +37,12 @@ class TestUser_instantiation(unittest.TestCase):
         self.assertNotEqual(a.id, b.id)
 
     def test_user_args_not_used(self):
-        a = User(x)
+        x = User()
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
-        time = datetime.today.isoformat()
+        time = datetime.today()
+        time_iso = time.isoformat()
         a = User(id="345", created_at=time, updated_at=time)
         self.assertEqual(a.id, "345")
         self.assertEqual(a.created_at, datetime.today)

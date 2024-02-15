@@ -20,7 +20,7 @@ class TestState_instantiation(unittest.TestCase):
         self.assertEqual(State, type(Amenity()))
 
     def test_state_stored_in_objects(self):
-        self.assertIn(State(), models.storage.all())
+        self.assertIn(State(), models.storage.all().value())
 
     def test_state_id__str(self):
         self.assertEqual(str, type(State().id))
@@ -41,7 +41,8 @@ class TestState_instantiation(unittest.TestCase):
         self.assertNotIn(x, a.__dict__.values())
 
     def test_passing_kwargs(self):
-        time = datetime.today.isoformat()
+        time = datetime.today
+        time_iso = time.isoformat()
         a = State(id="345", created_at=time, updated_at=time)
         self.assertEqual(a.id, "345")
         self.assertEqual(a.created_at, datetime.today)
